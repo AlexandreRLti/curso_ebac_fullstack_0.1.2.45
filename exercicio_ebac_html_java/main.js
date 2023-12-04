@@ -5,14 +5,14 @@ function ValidaNome(nomecompleto) {
    return nomecomoarray.length >= 2;
 }
 
-form.addEventListener('submit' , function (e) {
+form.addEventListener ('submit' , function ca(e) {
     let formEValido = false;
     e.preventDefault();
 
     const nomebenficiario = document.getElementById('nome-benficiario');
     const numerocontabenficiario = document.getElementById('Número-conta');
     const Valor = document.getElementById('valor-deposito');
-    const mensagemSucesso = ' montante de: ${valor.value} depositado para cliente: ${nomebenficiario.value} - conta: ${numerocontabenficiario.value}';
+    const mensagemSucesso = (` montante de: ${valor.value} depositado para cliente: ${nomebenficiario.value} - conta: ${numerocontabenficiario.value}`);
     
     formEValido = ValidaNome(nomebenficiario.value)
     if (formEValido) {
