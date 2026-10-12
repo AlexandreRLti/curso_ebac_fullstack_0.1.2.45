@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eletrodux | Portal de Fichas Técnicas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <div id="loginScreen" class="login-wrapper">
+        <header class="top">
+            <div class="mark" aria-hidden="true"></div>
+            <div class="brand">Eletrodux<small>FICHAS TÉCNICAS</small></div>
+        </header>
+        <main class="wrap">
+            <section class="intro">
+                <div>
+                    <div class="eyebrow">Portal industrial</div>
+                    <h1>Configuração certa.<br>Informação confiável.</h1>
+                    <p>Acesse as fichas técnicas das injetoras e consulte parâmetros, moldes associados e documentos de referência em um só lugar.</p>
+                </div>
+                <div>
+                    <div class="feature"><div class="tick">✓</div><span>Consulta organizada para as 40 máquinas</span></div>
+                    <div class="feature"><div class="tick">✓</div><span>Acesso individual por funcionário</span></div>
+                    <div class="feature"><div class="tick">✓</div><span>Interface adaptada para celular, tablet e computador</span></div>
+                </div>
+            </section>
+            <section class="formside">
+                <h2>Bem-vindo</h2>
+                <p class="sub">Entre com seu usuário e senha para acessar as fichas técnicas.</p>
+                <form id="loginForm">
+                    <div class="field">
+                        <label for="email">Nome de usuário</label>
+                        <input id="email" type="text" autocomplete="username" placeholder="tecnico ou facilitador" required>
+                    </div>
+                    <div class="field">
+                        <div class="passrow">
+                            <label for="password">Senha</label>
+                            <button class="show" type="button" id="toggle">Mostrar senha</button>
+                        </div>
+                        <input id="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
+                    </div>
+                    <label class="remember"><input type="checkbox" id="remember"> Manter e-mail preenchido neste dispositivo</label>
+                    <button class="btn" type="submit">Entrar no sistema</button>
+                    <div id="notice" class="notice" role="status"></div>
+                </form>
+                <div class="demo">
+                    <strong>Perfis para demonstração</strong>
+                    <p><strong>Técnico</strong> (Usuário: <code>tecnico</code> | Senha: <code>4545</code>) — Permite cadastrar e alterar fichas.<br>
+                    <strong>Facilitador</strong> (Usuário: <code>facilitador</code> | Senha: <code>050623</code>) — Somente consulta.</p>
+                </div>
+                <div class="security"><span>🔒</span> Protótipo local de controle de acesso.</div>
+            </section>
+        </main>
+        <footer class="foot">Eletrodux · Portal de fichas técnicas · Protótipo de interface</footer>
+    </div>
+
+    <!-- PORTAL PRINCIPAL (Oculto até o login) -->
+    <div id="portalScreen" style="display:none;">
+        <header class="top">
+            <div class="brand"><span class="mark"></span>Eletrodux<small>FICHAS TÉCNICAS</small></div>
+            <div class="topright">
+                <span class="pill" id="roleBadge">● Perfil</span>
+                <button id="logoutBtn" class="secondary">Sair</button>
+            </div>
+        </header>
+        <div class="layout">
+            <aside>
+                <div class="navtitle">Área técnica</div>
+                <nav>
+                    <button class="active" data-nav="machines">▦ &nbsp; Máquinas</button>
+                    <button data-nav="molds">⬡ &nbsp; Moldes</button>
+                    <button data-nav="records">▤ &nbsp; Fichas técnicas</button>
+                    <button data-nav="history">◷ &nbsp; Histórico</button>
+                </nav>
+                <div style="padding:18px 12px;color:#90a8bd;font-size:11px">40 máquinas cadastradas<br>Fichas técnicas centralizadas</div>
+            </aside>
+            <main class="portal-main">
+                <div class="heading">
+                    <div>
+                        <h1>Fichas técnicas</h1>
+                        <div class="sub" id="welcomeSub">Consulte as configurações por máquina e molde.</div>
+                    </div>
+                    <button id="addBtn" class="primary">＋ Nova ficha</button>
+                </div>
+                <div class="stats">
+                    <div class="stat"><div class="label">Máquinas cadastradas</div><strong>40</strong></div>
+                    <div class="stat"><div class="label">Ficha selecionada</div><strong id="statSelected">01</strong></div>
+                    <div class="stat"><div class="label">Situação da ficha</div><strong style="font-size:17px;color:var(--green);margin-top:10px">● Disponível</strong></div>
+                </div>
+                <div class="content">
+                    <section class="panel">
+                        <h2>Máquinas</h2>
+                        <input class="search" id="search" placeholder="⌕ Buscar máquina...">
+                        <div id="machineList" class="machine-list"></div>
+                    </section>
+                    <section class="panel" id="detail">
+                        <div class="detail-head">
+                            <div>
+                                <h2 id="detailTitle">Ficha Técnica — Injetora 01</h2>
+                                <div class="sub" id="detailSub">Código: INJ-01 · Última atualização: 08/10/2026</div>
+                            </div>
+                            <button id="editBtn" class="secondary">✎ Editar ficha</button>
+                        </div>
+                        <div class="tabs">
+                            <button class="tab active" data-tab="config">Configuração</button>
+                            <button class="tab" data-tab="molds">Moldes</button>
+                            <button class="tab" data-tab="notes">Observações e arquivos</button>
+                        </div>
+                        <div id="tabContent"></div>
+                        <div class="footer">Protótipo visual • Os parâmetros exibidos são dados fictícios para demonstração.</div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="modalRoot"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
