@@ -69,11 +69,17 @@ if (loginForm) {
         userRole = role;
         $('loginScreen').style.display = 'none';$('portalScreen').style.display = 'block';
 
-        if (role === 'tecnico') {
-            $('roleBadge').textContent = '● Perfil: Técnico (Edição Ativa)';
-            $('roleBadge.style').background = '#e5f7ed';
-        } else {
-            $('roleBadge').textContent = '● Perfil: Facilitador (Somente Consulta)';
+        const roleBadge = $('roleBadge');
+        if (roleBadge) {
+            if (role === 'tecnico') {
+                roleBadge.textContent = '● Perfil: Técnico (Edição Ativa)';
+                roleBadge.style.background = '#e5f7ed';
+                roleBadge.style.color = '#157447';
+            } else {
+                roleBadge.textContent = '● Perfil: Facilitador (Somente Consulta)';
+                roleBadge.style.background = '#eef5fc';
+                roleBadge.style.color = '#1458a2';
+            }
         }
 
         render();
@@ -92,7 +98,8 @@ if (logoutBtn) {
 
 // --- RENDERIZAÇÃO DO PORTAL ---
 function renderList() {
-    const q = $('search').value.toLowerCase();
+    const searchEl = $('search');
+    const q = searchEl ? searchEl.value.toLowerCase() : '';
     const listEl = $('machineList');
     if (!listEl) return;
 
@@ -118,12 +125,20 @@ function render() {
     if (!userRole) return;
     let m = machines[selected];
 
-    $('statSelected').textContent = String(m.id).padStart(2, '0');$('detailTitle').textContent = 'Ficha Técnica — ' + m.name;
-    $('detailSub').textContent = `Código: ${m.code} · Última atualização: ${m.updated}`;
+    const statSelected = $('statSelected');
+    if (statSelected) statSelected.textContent = String(m.id).padStart(2, '0');
+    
+    const detailTitle = $('detailTitle');
+    if (detailTitle) detailTitle.textContent = 'Ficha Técnica — ' + m.name;
+    
+    const detailSub = $('detailSub');
+    if (detailSub) detailSub.textContent = `Código: ${m.code} · Última atualização: ${m.updated}`;
 
-    // Restringe botões de alteração baseando-se no perfil (Técnico vs Facilitador)
     const canEdit = (userRole === 'tecnico');
-    $('editBtn').classList.toggle('hide', !canEdit);$('addBtn').classList.toggle('hide', !canEdit);
+    const editBtn = $('editBtn');
+    const addBtn = $('addBtn');
+    if (editBtn) editBtn.classList.toggle('hide', !canEdit);
+    if (addBtn) addBtn.classList.toggle('hide', !canEdit);
 
     document.querySelectorAll('.tab').forEach(b => {
         b.classList.toggle('active', b.dataset.tab === tab);
@@ -164,7 +179,8 @@ function render() {
             ${canEdit ? '<p><button class="secondary" id="editNotes">✎ Editar observações / anexar arquivo</button></p>' : ''}`;
     }
 
-    $('tabContent').innerHTML = c;
+    const tabContent = $('tabContent');
+    if (tabContent) tabContent.innerHTML = c;
 
     if ($('addMold'))$('addMold').onclick = () => openModal('mold');
     if ($('editNotes'))$('editNotes').onclick = () => openModal('notes');
@@ -181,11 +197,11 @@ document.querySelectorAll('.tab').forEach(b => {
 const searchInput = $('search');
 if (searchInput) searchInput.oninput = renderList;
 
-const editBtn = $('editBtn');
-if (editBtn) editBtn.onclick = () => openModal('edit');
+const editBtnEl = $('editBtn');
+if (editBtnEl) editBtnEl.onclick = () => openModal('edit');
 
-const addBtn = $('addBtn');
-if (addBtn) addBtn.onclick = () => openModal('new');
+const addBtnEl = $('addBtn');
+if (addBtnEl) addBtnEl.onclick = () => openModal('new');
 
 // --- MODAIS DE CADASTRO E EDIÇÃO ---
 function openModal(kind) {

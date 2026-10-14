@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Eletrodux | Portal de Fichas Técnicas</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eletrodux | Acesso às fichas técnicas</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <!-- TELA DE LOGIN -->
     <div id="loginScreen" class="login-wrapper">
         <header class="top">
@@ -29,29 +28,28 @@
             </section>
             <section class="formside">
                 <h2>Bem-vindo</h2>
-                <p class="sub">Entre com seu usuário e senha para acessar as fichas técnicas.</p>
+                <p class="sub">Entre com o seu utilizador e palavra-passe para aceder às fichas técnicas.</p>
                 <form id="loginForm">
                     <div class="field">
-                        <label for="email">Nome de usuário</label>
+                        <label for="email">Nome de utilizador</label>
                         <input id="email" type="text" autocomplete="username" placeholder="tecnico ou facilitador" required>
                     </div>
                     <div class="field">
                         <div class="passrow">
-                            <label for="password">Senha</label>
-                            <button class="show" type="button" id="toggle">Mostrar senha</button>
+                            <label for="password">Palavra-passe</label>
+                            <button class="show" type="button" id="toggle">Mostrar palavra-passe</button>
                         </div>
-                        <input id="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
+                        <input id="password" type="password" autocomplete="current-password" placeholder="Digite sua palavra-passe" required>
                     </div>
-                    <label class="remember"><input type="checkbox" id="remember"> Manter e-mail preenchido neste dispositivo</label>
+                    <label class="remember"><input type="checkbox" id="remember"> Manter dados preenchidos neste dispositivo</label>
                     <button class="btn" type="submit">Entrar no sistema</button>
                     <div id="notice" class="notice" role="status"></div>
                 </form>
                 <div class="demo">
-                    <strong>Perfis para demonstração</strong>
-                    <p><strong>Técnico</strong> (Usuário: <code>tecnico</code> | Senha: <code>4545</code>) — Permite cadastrar e alterar fichas.<br>
-                    <strong>Facilitador</strong> (Usuário: <code>facilitador</code> | Senha: <code>050623</code>) — Somente consulta.</p>
+                    <strong>Perfis configurados para demonstração</strong>
+                    <p>Técnico (utilizador: <code>tecnico</code> | senha: <code>4545</code>): pode editar fichas.<br>Facilitador (utilizador: <code>facilitador</code> | senha: <code>050623</code>): somente consulta.</p>
                 </div>
-                <div class="security"><span>🔒</span> Protótipo local de controle de acesso.</div>
+                <div class="security"><span>🔒</span> Protótipo local de controlo de acesso.</div>
             </section>
         </main>
         <footer class="foot">Eletrodux · Portal de fichas técnicas · Protótipo de interface</footer>
@@ -81,7 +79,7 @@
                 <div class="heading">
                     <div>
                         <h1>Fichas técnicas</h1>
-                        <div class="sub" id="welcomeSub">Consulte as configurações por máquina e molde.</div>
+                        <div class="sub">Consulte as configurações por máquina e molde.</div>
                     </div>
                     <button id="addBtn" class="primary">＋ Nova ficha</button>
                 </div>
@@ -119,6 +117,6 @@
 
     <div id="modalRoot"></div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
